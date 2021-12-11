@@ -7,5 +7,15 @@ module.exports = {
     },
     verifyToken(token) {
 
+        return new Promise((resolve, reject) => {
+            jwt.verify(token, secret, (err, payload) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+                resolve(payload);
+            });
+        });
+
     }
 }

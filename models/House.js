@@ -32,10 +32,10 @@ module.exports = (mongoose) => {
             type: Number,
             required: true
         },
-        rentedAHome: {
-            type: Array,
+        rentedAHome: [{
+            type: ObjectId,
             ref: "User"
-        },
+        }],
         owner: {
             type: ObjectId,
             ref: "User"

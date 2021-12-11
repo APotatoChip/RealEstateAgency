@@ -1,6 +1,7 @@
 // Setup Express and Middlewares
 const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
+const { isAuth } = require('../utils');
 
 module.exports = (express, app) => {
 
@@ -8,8 +9,11 @@ module.exports = (express, app) => {
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
 
-    //  Setup View Engine
     app.use(cookieParser());
+
+    app.use(isAuth);
+
+    //  Setup View Engine 
     var hbs = exphbs.create({
         layoutsDir: 'views',
         defaultLayout: 'base-layout.hbs',
