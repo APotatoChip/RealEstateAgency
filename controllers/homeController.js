@@ -1,7 +1,17 @@
+const { House } = require('../models');
+
 module.exports = {
     get: {
         home(req, res, next) {
-            res.render('./home/home.hbs', { sth: 5 })
+            House
+                .find({})
+                .then((houses) => {
+                    res.render('./home/home.hbs', { houses });
+
+                })
+                .catch((err) => console.log(err));
+
+
         },
     }
 };

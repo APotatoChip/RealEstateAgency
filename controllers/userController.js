@@ -9,6 +9,11 @@ module.exports = {
         },
         register(req, res, next) {
             res.render('./user/register.hbs');
+        },
+        logout(req, res, next) {
+            res
+                .clearCookie(cookieName)
+                .redirect('/home');
         }
     },
     post: {

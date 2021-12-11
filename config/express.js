@@ -1,5 +1,7 @@
 // Setup Express and Middlewares
+const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const cookieParser = require('cookie-parser');
 const { isAuth } = require('../utils');
 
@@ -18,7 +20,8 @@ module.exports = (express, app) => {
         layoutsDir: 'views',
         defaultLayout: 'base-layout.hbs',
         partialsDir: 'views/partials',
-        extname: 'hbs'
+        extname: 'hbs',
+        handlebars: allowInsecurePrototypeAccess(Handlebars)
     });
 
     app.engine('hbs', hbs.engine);

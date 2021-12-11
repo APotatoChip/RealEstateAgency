@@ -1,8 +1,16 @@
+const { House } = require('../models');
+
 module.exports = {
     get: {
         all(req, res, next) {
+            House
+                .find({})
+                .lean()
+                .then((houses) => {
+                    res.render('./home/aprt-for-recent.hbs', { houses });
 
-            res.render('./home/aprt-for-recent.hbs');
+                })
+                .catch((err) => console.log(err));
 
         },
         create(req, res, next) {
@@ -19,6 +27,11 @@ module.exports = {
         },
     },
     post: {
-
+        create(req, res, next) {;
+            House.create({...req.body, owner: req.user._id })
+                .then((createdHouse) => {
+                    res.redirect('/housing/all');
+                });
+        }
     }
 };

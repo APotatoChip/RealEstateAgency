@@ -1,5 +1,4 @@
-
-            <section id="home-page" class="background-image">
+           <section id="home-page" class="background-image">
                 <div class="home-container">
 
                     <div class="info">
@@ -13,32 +12,12 @@
             <section id="top-houses">
                 <h1>Top Houses</h1>
                 <div class="houses">
-
-
-                    <div class="card-home">
-                        <h2>Real House Luxury Villa</h2>
-                        <div class="cta-container"><a href="#" class="details-link">Details</a></div>
-                        <div class="card_image"><img src="5.jpg"></div>
-
-                    </div>
-
-                    <div class="card-home">
-                        <h2>House Take Away</h2>
-                        <div class="cta-container"><a href="#" class="details-link">Details</a></div>
-                        <div class="card_image"><img src="house2.jpg"></div>
-
-                    </div>
-
-                    <div class="card-home">
-                        <h2>Sunhouse C21</h2>
-                        <div class="cta-container"><a href="#" class="details-link">Details</a></div>
-                        <div class="card_image"><img src="apartments.jpg"></div>
-
-                    </div>
-
-                    <!-- If there are still no offers for housing in the database display: -->
-                    <!--<div class="no-data-container">
+                    {{#each houses}}
+                    {{>houseNotAuth}}
+                    {{else}}
+                      <div class="no-data-container">
                         <p class="no-data">There are no housing offers found...</p>
-                    </div>-->
+                    </div>
+                    {{/each}}
                 </div>
             </section>
