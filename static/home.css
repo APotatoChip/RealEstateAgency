@@ -4,7 +4,7 @@
     }
     
     .background-image {
-        background: url('../images/main_slider_1.jpg');
+        background: url('main_slider_1.jpg');
         background-position: 40% 60%;
         background-repeat: no-repeat;
         background-size: cover;

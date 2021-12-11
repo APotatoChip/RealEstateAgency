@@ -10,7 +10,7 @@ body {
 }
 
 body {
-    background: url('../images/main_slider_1.jpg');
+    background: url('/main_slider_1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

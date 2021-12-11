@@ -3,4 +3,5 @@ module.exports = (express, app) => {
 
     app.use('/home', routers.homeRouter);
     app.use('/user', routers.userRouter);
+    app.use('/housing', routers.housingRouter)
 }
