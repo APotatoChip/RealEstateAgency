@@ -8,8 +8,10 @@ module.exports = (router) => {
     router.get('/edit/:houseId', houseController.get.edit);
     router.get('/delete/:houseId', houseController.get.delete);
 
+
     router.post('/create', houseController.post.create);
     router.post('/edit/:houseId', houseController.post.edit);
+    router.post('/rent/:houseId', houseController.post.rent);
 
     return router;
 }

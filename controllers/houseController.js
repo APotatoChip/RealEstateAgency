@@ -66,6 +66,9 @@ module.exports = {
                 .then((updatedHouse) => {
                     res.redirect(`/housing/details/${houseId}`);
                 });
+        },
+        rent(req, res, next) {
+
         }
     }
 };

@@ -13,46 +13,36 @@
                     <h4>Year: {{year}}</h4>
                     <h4>City: {{city}}</h4>
                     <p> {{propertyDesc}}</p>
-
-                    <!-- if there are already tenants of the housing, separate their names with a comma and a space ", "  -->
-                    <p>People rented this housing: Alex Petkov, Ivan Dobrev</p>
-
+                    {{#if noTenants}}
                     <!-- If not display: -->
                     <p>People rented this housing: There are no tenants yet.</p>
+                    {{else}}
+                    <!-- if there are already tenants of the housing, separate their names with a comma and a space ", "  -->
+                    <p>People rented this housing: Alex Petkov, Ivan Dobrev</p>
+                    {{/if}}
                 </div>
             </div>
              <!-- if there is no registered user, do not display buttons-->
             <div class="product-btn">
                 {{#if isOwner}}
-                <!-- Only for registered user and creator of the housing offer-->
-                <a href="/housing/edit/{{_id}}" class="edit">Edit</a>
-                <a href="/housing/delete/{{_id}}" class="remove">Delete</a>
+                    <!-- Only for registered user and creator of the housing offer-->
+                    <a href="/housing/edit/{{_id}}" class="edit">Edit</a>
+                    <a href="/housing/delete/{{_id}}" class="remove">Delete</a>
                 {{else}}
-                <!-- logged in user with available pieces-->
-                <a href="#" class="rentHome">Rent a home, available 2 housing</a>
-                <p class="alRentHome">You have already rent this home</p>
-
-                <!-- logged in user with no available pieces-->
-                <p class="no-housing">No Housing Available!</p>
+                    <!-- logged in user with available pieces-->
+                    {{#if availablePlaces}}
+                        {{#if hasRentedCurrHouse}}
+                        <p class="alRentHome">You have already rent this home</p>
+                        {{else}}
+                        <a href="/housing/details/{{_id}}" class="rentHome">Rent a home, available {{availablePieces}} housing</a>
+                        {{/if}}
+                    {{else}}
+                        <!-- logged in user with no available pieces-->
+                        <p class="no-housing">No Housing Available!</p>
+                    {{/if}}
                 {{/if}}
             </div>
-            {{else}}
-              <div class="product-text">
-                <div class="product-text">
-                    
-                    <h1>{{name}}</h1>
-                    <h2>Type: {{type}}</h2>
-                    <h4>Year: {{year}}</h4>
-                    <h4>City: {{city}}</h4>
-                    <p>{{propertyDesc}}</p>
-
-                    <!-- if there are already tenants of the housing, separate their names with a comma and a space ", "  -->
-                    <p>People rented this housing: Alex Petkov, Ivan Dobrev</p>
-
-                    <!-- If not display: -->
-                    <p>People rented this housing: There are no tenants yet.</p>
-                </div>
-            </div>
+            
            
             {{/if}}
         </div>
