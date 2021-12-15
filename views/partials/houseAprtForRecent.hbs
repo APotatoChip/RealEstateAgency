@@ -1,0 +1,11 @@
+<div class="card">
+    <h3>{{name}}</h3>
+    <p>{{propertyDesc}}</p>
+ {{#if @root.isLoggedIn}}
+        <div class="cta-container"><a href="/housing/details/{{_id}}" class="det-link">Details</a></div>
+{{else}}
+  <div class="cta-container"><a href="/user/login" class="det-link">Details</a></div>
+{{/if}}
+    <div class="card_circle"><img src="{{homeImg}}"></div>
+</div>
+       

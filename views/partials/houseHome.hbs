@@ -1,5 +1,12 @@
+
 <div class="card-home">
   <h2>{{name}}</h2>
+  {{#if @root.isLoggedIn}}
   <div class="cta-container"><a href="/housing/details/{{_id}}" class="details-link">Details</a></div>
+{{else}}
+ <div class="cta-container"><a href="/user/login" class="details-link">Details</a></div>
+{{/if}}
+
+
   <div class="card_image"><img src="{{homeImg}}"></div>
 </div>

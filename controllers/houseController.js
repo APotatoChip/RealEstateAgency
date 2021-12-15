@@ -1,5 +1,7 @@
 const { House } = require('../models');
 
+const { isOwnerMiddleware } = require('../utils')
+
 module.exports = {
     get: {
         all(req, res, next) {
@@ -7,6 +9,7 @@ module.exports = {
                 .find({})
                 .lean()
                 .then((houses) => {
+
                     res.render('./home/aprt-for-recent.hbs', { houses });
 
                 })
@@ -23,7 +26,15 @@ module.exports = {
                 .lean()
                 .then((house) => {
                     res.render('./housing/details.hbs', {...house });
-                })
+                });
+            // const currUserId = req.user._id;
+            // const houseId = req.url.split("/")[2];
+
+            // function renderHouse() {
+
+            // }
+
+            // isOwnerMiddleware(currUserId, houseId, next, res);
         },
         edit(req, res, next) {
             House

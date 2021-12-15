@@ -3,7 +3,7 @@ const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const cookieParser = require('cookie-parser');
-const { isAuth } = require('../utils');
+const { isAuth, isOwnerMiddleware } = require('../utils');
 
 module.exports = (express, app) => {
 
@@ -14,6 +14,8 @@ module.exports = (express, app) => {
     app.use(cookieParser());
 
     app.use(isAuth);
+
+    app.use(isOwnerMiddleware);
 
     //  Setup View Engine 
     var hbs = exphbs.create({
