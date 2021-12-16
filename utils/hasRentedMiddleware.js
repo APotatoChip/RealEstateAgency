@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
     const path = "/details";
 
     if (!user || !req.path.includes(path)) {
+
         next();
         return;
     }
@@ -21,17 +22,27 @@ module.exports = (req, res, next) => {
 
 
             if (nOfAvailablePlaces > 0 && isOwnerOfCurrHouse == false) {
+                console.log(currRents);
+                if (currRents.length > 0) {
 
-                currRents.forEach((tenantId) => {
-                    if (tenantId.toString() === currUserId) {
-                        res.locals.hasRentedCurrHouse = true;
-                    } else {
-                        res.locals.hasRentedCurrHouse = false;
-                    }
-                })
+                    currRents.forEach((tenantId) => {
+                        if (tenantId.toString() === currUserId.toString()) {
+
+                            res.locals.hasRentedCurrHouse = true;
+                            next();
+                        } else {;
+                            res.locals.hasRentedCurrHouse = false;
+                            next();
+                        }
+                    })
+                } else {
+                    res.locals.hasRentedCurrHouse = false;
+                    next();
+                }
+
             }
 
-            next();
+
 
 
 

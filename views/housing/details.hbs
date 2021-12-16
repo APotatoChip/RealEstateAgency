@@ -30,11 +30,11 @@
                     <a href="/housing/delete/{{_id}}" class="remove">Delete</a>
                 {{else}}
                     <!-- logged in user with available pieces-->
-                    {{#if availablePlaces}}
+                    {{#if avPlaces}}
                         {{#if hasRentedCurrHouse}}
                         <p class="alRentHome">You have already rent this home</p>
                         {{else}}
-                        <a href="/housing/details/{{_id}}" class="rentHome">Rent a home, available {{availablePieces}} housing</a>
+                        <a class="rentHome"  href="/housing/rent/{{_id}}" >Rent a home, available {{availablePieces}} housing</a>
                         {{/if}}
                     {{else}}
                         <!-- logged in user with no available pieces-->

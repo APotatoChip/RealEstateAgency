@@ -1,6 +1,7 @@
 const { House } = require('../models');
 
-const { isOwnerMiddleware } = require('../utils')
+const { hasRentedCurrHome, isAvailable } = require('../utils');
+
 
 module.exports = {
     get: {
@@ -26,15 +27,11 @@ module.exports = {
                 .lean()
                 .then((house) => {
                     res.render('./housing/details.hbs', {...house });
-                });
-            // const currUserId = req.user._id;
-            // const houseId = req.url.split("/")[2];
 
-            // function renderHouse() {
+                })
 
-            // }
 
-            // isOwnerMiddleware(currUserId, houseId, next, res);
+
         },
         edit(req, res, next) {
             House
@@ -45,11 +42,38 @@ module.exports = {
                 });
         },
         delete(req, res, next) {
+
             House
                 .deleteOne({ _id: req.params.houseId })
                 .then((result) => {
                     res.redirect('/housing/all');
                 });
+        },
+
+        rent(req, res, next) {
+
+            const userId = req.user._id;
+
+            var nOfAvailablePlaces = 0;
+            var rentsArr = [];
+            House.findOne({ _id: req.params.houseId })
+                .then((house) => {
+                    nOfAvailablePlaces = house.availablePieces;
+                    rentsArr = house.rentedAHome;
+                    nOfAvailablePlaces--;
+                    rentsArr.push(userId);
+
+                })
+                .then(() => {
+                    House
+                        .updateOne({ _id: req.params.houseId }, { $set: { availablePieces: nOfAvailablePlaces, rentedAHome: rentsArr } })
+                        .then((result) => {
+                            res.redirect(`/housing/details/${req.params.houseId}`);
+                        })
+
+                })
+
+
         }
     },
     post: {
@@ -66,9 +90,6 @@ module.exports = {
                 .then((updatedHouse) => {
                     res.redirect(`/housing/details/${houseId}`);
                 });
-        },
-        rent(req, res, next) {
-
         }
     }
 };
