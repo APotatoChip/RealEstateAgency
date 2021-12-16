@@ -1,6 +1,6 @@
 const { House } = require('../models');
 
-const { hasRentedCurrHome, isAvailable } = require('../utils');
+
 
 
 module.exports = {
@@ -22,6 +22,8 @@ module.exports = {
             res.render('./housing/create.hbs');
         },
         details(req, res, next) {
+
+            console.log(res.locals);
             House
                 .findOne({ _id: req.params.houseId })
                 .lean()
@@ -29,9 +31,6 @@ module.exports = {
                     res.render('./housing/details.hbs', {...house });
 
                 })
-
-
-
         },
         edit(req, res, next) {
             House
@@ -53,6 +52,7 @@ module.exports = {
         rent(req, res, next) {
 
             const userId = req.user._id;
+
 
             var nOfAvailablePlaces = 0;
             var rentsArr = [];
@@ -77,7 +77,7 @@ module.exports = {
         }
     },
     post: {
-        create(req, res, next) {;
+        create(req, res, next) {
             House.create({...req.body, owner: req.user._id })
                 .then((createdHouse) => {
                     res.redirect('/housing/all');

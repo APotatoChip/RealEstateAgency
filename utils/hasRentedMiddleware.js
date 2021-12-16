@@ -4,8 +4,7 @@ module.exports = (req, res, next) => {
     const user = res.locals.isLoggedIn;
     const path = "/details";
 
-    if (!user || !req.path.includes(path)) {
-
+    if (!user || !req.path.includes(path) || res.locals.isOwner) {
         next();
         return;
     }
@@ -22,7 +21,7 @@ module.exports = (req, res, next) => {
 
 
             if (nOfAvailablePlaces > 0 && isOwnerOfCurrHouse == false) {
-                console.log(currRents);
+
                 if (currRents.length > 0) {
 
                     currRents.forEach((tenantId) => {

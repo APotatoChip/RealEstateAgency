@@ -9,16 +9,19 @@ module.exports = (req, res, next) => {
         return;
     }
 
+
     const currUserId = req.user._id;
     const houseId = req.url.split("/")[3];
 
-
+    console.log(req);
     House.findOne({ _id: houseId })
         .then((house) => {
 
             const houseOwnerId = house.owner;
 
             if (houseOwnerId.toString() == currUserId.toString()) {
+
+
 
                 res.locals.isOwner = true;
                 next();

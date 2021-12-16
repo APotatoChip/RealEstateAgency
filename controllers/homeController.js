@@ -13,5 +13,11 @@ module.exports = {
 
 
         },
+        search(req, res, next) {
+
+            res.render('./housing/search.hbs');
+
+
+        },
     }
-};
+}

@@ -19,11 +19,12 @@ module.exports = {
     post: {
         login(req, res, next) {
 
-            const { email, password } = req.body;
-
+            const { username, password } = req.body;
+            console.log(req.body);
             User
-                .findOne({ email })
+                .findOne({ username })
                 .then((user) => {
+                    console.log(user);
                     return Promise.all([
                         user.comparePasswords(password),
                         user,
