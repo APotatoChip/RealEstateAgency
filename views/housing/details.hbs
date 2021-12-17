@@ -17,11 +17,8 @@
                     <!-- If not display: -->
                     <p>People rented this housing: There are no tenants yet.</p>
                     {{else}}
-                 {{#eachTenants rentedAHome 3}}
-                
                     <!-- if there are already tenants of the housing, separate their names with a comma and a space ", "  -->
-                    <p>People rented this housing: {{rentedAHome}}</p>
-                   {{/eachTenants}}
+                    <p>People rented this housing: {{ tenants}}</p>
                     {{/if}}
                 </div>
             </div>

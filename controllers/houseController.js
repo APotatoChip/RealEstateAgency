@@ -1,6 +1,5 @@
+const Logger = require('nodemon/lib/utils/log');
 const { House } = require('../models');
-
-
 
 
 module.exports = {
@@ -26,9 +25,18 @@ module.exports = {
             House
                 .findOne({ _id: req.params.houseId })
                 .lean()
+                .populate('rentedAHome')
                 .then((house) => {
-
-                    res.render('./housing/details.hbs', {...house });
+                    var arr = [];
+                    if (house.rentedAHome.length != 0) {
+                        house.rentedAHome.forEach((tenant) => {
+                            arr.push(tenant.fullName);
+                        })
+                        arr.join(', ');
+                    }
+                    // console.log(house.rentedAHome)
+                    console.log(arr);
+                    res.render('./housing/details.hbs', {...house, "tenants": arr });
                 })
         },
         edit(req, res, next) {
@@ -51,18 +59,21 @@ module.exports = {
         rent(req, res, next) {
 
             const userId = req.user._id;
-
+            const userFullName = req.user.fullName;
             var nOfAvailablePlaces = 0;
             var rentsArr = [];
+
             House.findOne({ _id: req.params.houseId })
+                .populate('rentedAHome')
                 .then((house) => {
                     nOfAvailablePlaces = house.availablePieces;
                     rentsArr = house.rentedAHome;
                     nOfAvailablePlaces--;
                     rentsArr.push(userId);
 
-                })
-                .then(() => {
+                    console.log(house.rentedAHome[0].fullName)
+                }).then(() => {
+
                     House
                         .updateOne({ _id: req.params.houseId }, { $set: { availablePieces: nOfAvailablePlaces, rentedAHome: rentsArr } })
                         .then((result) => {

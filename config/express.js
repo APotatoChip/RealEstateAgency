@@ -31,20 +31,6 @@ module.exports = (express, app) => {
                 for (var i = ary.length - 1; i > ary.length - 4; --i)
                     result.push(options.fn(ary[i]));
                 return result.join('');
-            },
-            eachTenants: function(ary, max, options) {
-                if (!ary || ary.length == 0)
-                    return options.inverse(this);
-                var result = [];
-                for (var i = 0; i < ary.length; ++i) {
-                    var user = findUser(ary[i]);
-                    result.push(user);
-                }
-                console.log(result);
-                // Promise.all(result).then((v) =>
-                //     console.log(v));
-
-
             }
         },
         layoutsDir: 'views',
