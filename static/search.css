@@ -10,11 +10,101 @@
 
 #find-section {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }
 
 #find-section>.card {
     margin-left: 6em;
+}
+
+#find-section>.card-home {
+    background-color: #fff;
+    bottom: 0;
+    box-shadow: 0px 0px 40px 4px rgba(77, 77, 240, 0.315);
+    height: 400px;
+    margin-top: 20px;
+    left: 0;
+    overflow: hidden;
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 500px;
+    margin-left: -1em;
+    text-align: center;
+}
+
+#find-section>.card-home>h2 {
+    color: #0c0c41;
+    font-family: 'Raleway', sans-serif;
+    font-size: 22px;
+    font-weight: 200;
+    margin-top: 330px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 9999;
+}
+
+#find-section>.card-home:hover h2 {
+    background: #3487f7;
+    color: #fff;
+    margin-top: 150px;
+    padding: 5px;
+}
+
+#find-section>.card-home:hover .card_image {
+    background-size: cover;
+    border-radius: 0;
+    margin-top: -120px;
+}
+
+#find-section>.card_image {
+    background-color: #eef2f7;
+    background-size: cover;
+    height: 470px;
+    margin-left: -55px;
+    margin-top: -170px;
+    position: absolute;
+    width: 560px;
+}
+
+#find-section>.card:hover {
+    height: 430px;
+    width: 500px;
+}
+
+#find-section>.card:hover .cta-container {
+    display: inline;
+    margin-top: 390px;
+}
+
+#find-section>.card:hover .card_circle {
+    background-size: cover;
+    border-radius: 0;
+    margin-top: -130px;
+}
+
+#find-section>.card_image>img {
+    width: 100%;
+    height: 100%;
+}
+
+#find-section>.card-home:hover {
+    height: 430px;
+    width: 500px;
+}
+
+#find-section>.card-home:hover .cta-container {
+    display: inline;
+    margin-top: 390px;
+}
+
+#find-section>.card-home:hover .card_circle {
+    background-size: cover;
+    border-radius: 0;
+    margin-top: -130px;
 }
 
 .search>input {
