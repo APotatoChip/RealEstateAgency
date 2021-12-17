@@ -34,8 +34,7 @@ module.exports = {
                         })
                         arr.join(', ');
                     }
-                    // console.log(house.rentedAHome)
-                    console.log(arr);
+
                     res.render('./housing/details.hbs', {...house, "tenants": arr });
                 })
         },
