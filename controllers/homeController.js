@@ -14,10 +14,25 @@ module.exports = {
 
         },
         search(req, res, next) {
-
-            res.render('./housing/search.hbs');
-
-
+            res.render('./home/search.hbs');
         },
+    },
+    post: {
+        search(req, res, next) {
+            var searchParam = req.body.search;
+            House
+                .find({})
+                .then((houses) => {
+                    var housesCollection = [];
+                    houses.forEach((house) => {
+                        const houseName = house.name.toString().toLowerCase();
+                        if (houseName.includes(searchParam)) {
+                            housesCollection.push(house);
+                        }
+                    })
+                    res.render('./home/search.hbs', { housesCollection });
+                })
+
+        }
     }
 }
