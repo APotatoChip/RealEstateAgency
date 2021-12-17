@@ -20,11 +20,11 @@ module.exports = {
         login(req, res, next) {
 
             const { username, password } = req.body;
-            console.log(req.body);
+
             User
                 .findOne({ username })
                 .then((user) => {
-                    console.log(user);
+
                     return Promise.all([
                         user.comparePasswords(password),
                         user,

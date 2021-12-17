@@ -3,7 +3,8 @@ const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const cookieParser = require('cookie-parser');
-const { isAuth, isOwnerMiddleware, hasRentedCurrHome, isAvailable } = require('../utils');
+const { findUser, isAuth, isOwnerMiddleware, hasRentedCurrHome, isAvailable } = require('../utils');
+
 
 module.exports = (express, app) => {
 
@@ -21,13 +22,42 @@ module.exports = (express, app) => {
 
     //  Setup View Engine 
     var hbs = exphbs.create({
+        helpers: {
+            eachUptoLastThree: function(ary, max, options) {
+                if (!ary || ary.length == 0)
+                    return options.inverse(this);
+
+                var result = [];
+                for (var i = ary.length - 1; i > ary.length - 4; --i)
+                    result.push(options.fn(ary[i]));
+                return result.join('');
+            },
+            eachTenants: function(ary, max, options) {
+                if (!ary || ary.length == 0)
+                    return options.inverse(this);
+                var result = [];
+                for (var i = 0; i < ary.length; ++i) {
+                    var user = findUser(ary[i]);
+                    result.push(user);
+                }
+                console.log(result);
+                // Promise.all(result).then((v) =>
+                //     console.log(v));
+
+
+            }
+        },
         layoutsDir: 'views',
         defaultLayout: 'base-layout.hbs',
         partialsDir: 'views/partials',
         extname: 'hbs',
         handlebars: allowInsecurePrototypeAccess(Handlebars)
+
     });
 
     app.engine('hbs', hbs.engine);
+
     app.set('viewengine', 'hbs');
+
+
 };

@@ -23,13 +23,12 @@ module.exports = {
         },
         details(req, res, next) {
 
-            console.log(res.locals);
             House
                 .findOne({ _id: req.params.houseId })
                 .lean()
                 .then((house) => {
-                    res.render('./housing/details.hbs', {...house });
 
+                    res.render('./housing/details.hbs', {...house });
                 })
         },
         edit(req, res, next) {
@@ -53,7 +52,6 @@ module.exports = {
 
             const userId = req.user._id;
 
-
             var nOfAvailablePlaces = 0;
             var rentsArr = [];
             House.findOne({ _id: req.params.houseId })
@@ -68,6 +66,7 @@ module.exports = {
                     House
                         .updateOne({ _id: req.params.houseId }, { $set: { availablePieces: nOfAvailablePlaces, rentedAHome: rentsArr } })
                         .then((result) => {
+
                             res.redirect(`/housing/details/${req.params.houseId}`);
                         })
 

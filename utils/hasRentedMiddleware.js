@@ -28,22 +28,18 @@ module.exports = (req, res, next) => {
                         if (tenantId.toString() === currUserId.toString()) {
 
                             res.locals.hasRentedCurrHouse = true;
-                            next();
+
                         } else {;
                             res.locals.hasRentedCurrHouse = false;
-                            next();
+
                         }
-                    })
+                    });
+                    next();
                 } else {
                     res.locals.hasRentedCurrHouse = false;
                     next();
                 }
 
             }
-
-
-
-
-
         })
 }

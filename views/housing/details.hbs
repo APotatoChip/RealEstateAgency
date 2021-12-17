@@ -7,7 +7,7 @@
                  {{#if isLoggedIn}}
             <div class="product-text">
                 <div class="product-text">
-                    
+                   
                     <h1>{{name}}</h1>
                     <h2>Type: {{type}}</h2>
                     <h4>Year: {{year}}</h4>
@@ -17,9 +17,11 @@
                     <!-- If not display: -->
                     <p>People rented this housing: There are no tenants yet.</p>
                     {{else}}
-                 
+                 {{#eachTenants rentedAHome 3}}
+                
                     <!-- if there are already tenants of the housing, separate their names with a comma and a space ", "  -->
-                    <p>People rented this housing: Alex Petkov, Ivan Dobrev</p>
+                    <p>People rented this housing: {{rentedAHome}}</p>
+                   {{/eachTenants}}
                     {{/if}}
                 </div>
             </div>

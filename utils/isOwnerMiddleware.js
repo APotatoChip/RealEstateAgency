@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
     const currUserId = req.user._id;
     const houseId = req.url.split("/")[3];
 
-    console.log(req);
+
     House.findOne({ _id: houseId })
         .then((house) => {
 
