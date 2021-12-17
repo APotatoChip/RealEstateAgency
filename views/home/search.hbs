@@ -4,7 +4,13 @@
 </form>
 <section id="find-section">
     <!-- If there are any matching matches from the search, show each of them -->
+    {{#if housesCollection}}
       {{#each housesCollection}}
    {{>houseHome}}
    {{/each}}
+   {{else}}
+   <div class="no-data-listing">
+           <p class="no-offer">No match was found for the submitted type...</p>
+          </div>
+   {{/if}}
    </section>
