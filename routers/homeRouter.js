@@ -1,10 +1,11 @@
 const { homeController } = require('../controllers');
+const { isAuthNeededMidleware } = require('../utils')
 
 module.exports = (router) => {
-    router.get('/', homeController.get.home);
-    router.get('/search', homeController.get.search);
+    router.get('/', isAuthNeededMidleware(), homeController.get.home);
+    router.get('/search', isAuthNeededMidleware(true), homeController.get.search);
 
-    router.post('/search', homeController.post.search);
+    router.post('/search', isAuthNeededMidleware(true), homeController.post.search);
 
     return router;
 };

@@ -1,17 +1,17 @@
 const { houseController } = require('../controllers');
-const { isAvailable } = require('../utils');
+const { isAuthNeededMidleware } = require('../utils');
 
 module.exports = (router) => {
 
     router.get('/all', houseController.get.all);
-    router.get('/create', houseController.get.create);
-    router.get('/details/:houseId', houseController.get.details);
-    router.get('/edit/:houseId', houseController.get.edit);
-    router.get('/delete/:houseId', houseController.get.delete);
-    router.get('/rent/:houseId', houseController.get.rent);
+    router.get('/create', isAuthNeededMidleware(true), houseController.get.create);
+    router.get('/details/:houseId', isAuthNeededMidleware(true), houseController.get.details);
+    router.get('/edit/:houseId', isAuthNeededMidleware(true), houseController.get.edit);
+    router.get('/delete/:houseId', isAuthNeededMidleware(true), houseController.get.delete);
+    router.get('/rent/:houseId', isAuthNeededMidleware(true), houseController.get.rent);
 
-    router.post('/create', houseController.post.create);
-    router.post('/edit/:houseId', houseController.post.edit);
+    router.post('/create', isAuthNeededMidleware(true), houseController.post.create);
+    router.post('/edit/:houseId', isAuthNeededMidleware(true), houseController.post.edit);
 
 
     return router;
