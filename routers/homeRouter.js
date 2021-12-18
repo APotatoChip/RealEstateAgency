@@ -7,5 +7,6 @@ module.exports = (router) => {
 
     router.post('/search', isAuthNeededMidleware(true), homeController.post.search);
 
+
     return router;
 };

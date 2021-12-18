@@ -4,8 +4,8 @@ module.exports = (isAuthNeeded = false) => {
         const isAuthWhenIsNotNeeded = req.user && !isAuthNeeded;
 
         if (isNotAuthWhenIsNeeded || isAuthWhenIsNotNeeded) {
-            const redirectPage = isNotAuthWhenIsNeeded ? '/user/login' : '/home';
-            res.redirect(redirectPage);
+
+            res.render('./home/404.hbs');
             return;
         }
 

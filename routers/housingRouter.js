@@ -14,5 +14,7 @@ module.exports = (router) => {
     router.post('/edit/:houseId', isAuthNeededMidleware(true), houseController.post.edit);
 
 
+
+
     return router;
 }

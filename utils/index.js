@@ -7,6 +7,8 @@ const registerValidator = require('./regitserValidator');
 const formValidator = require('./formValidator');
 const loginValidator = require('./loginValidator');
 const isAuthNeededMidleware = require('./isAuthNeededMiddleware');
+const createValidator = require('./createValidator');
+const editValidator = require('./editValidator');
 
 module.exports = {
     jwt,
@@ -17,5 +19,7 @@ module.exports = {
     registerValidator,
     formValidator,
     loginValidator,
-    isAuthNeededMidleware
+    isAuthNeededMidleware,
+    createValidator,
+    editValidator
 };

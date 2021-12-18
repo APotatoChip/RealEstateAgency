@@ -15,7 +15,7 @@ module.exports = {
         },
         search(req, res, next) {
             res.render('./home/search.hbs');
-        },
+        }
     },
     post: {
         search(req, res, next) {
