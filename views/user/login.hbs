@@ -8,14 +8,15 @@
         <form class="card-form" action="/user/login" method="POST">
 
             <div class="input">
-                <input type="text" class="input-field" placeholder="alexander" id="username" name="username" value="" />
+                <input type="text" class="input-field" placeholder="alexander" id="username" name="username" value="{{oldInput.username}}" />
                 <label class="username">Username</label>
             </div>
             <div class="input">
-                <input type="password" class="input-field" id="password" name="password" placeholder="******" />
+                <input type="password" class="input-field" id="password" name="password" placeholder="******" value="{{oldInput.password}}"/>
                 <label class="password">Password</label>
             </div>
             <div class="action">
+                {{>error}}
                 <button class="action-button">Login</button>
             </div>
         </form>

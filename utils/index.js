@@ -3,6 +3,9 @@ const isAuth = require('./isAuth');
 const isOwnerMiddleware = require('./isOwnerMiddleware');
 const hasRentedCurrHome = require('./hasRentedMiddleware');
 const isAvailable = require('./isAvailableMiddleware');
+const registerValidator = require('./regitserValidator');
+const formValidator = require('./formValidator');
+const loginValidator = require('./loginValidator');
 
 
 module.exports = {
@@ -10,5 +13,8 @@ module.exports = {
     isAuth,
     isOwnerMiddleware,
     hasRentedCurrHome,
-    isAvailable
+    isAvailable,
+    registerValidator,
+    formValidator,
+    loginValidator
 };
